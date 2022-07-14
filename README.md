@@ -1,6 +1,6 @@
 # OsuDownloadBooster
 Download beatmaps from some mirror sites
-currently has support of two mirrors (Azure & Chimu), create a pull request for more suggestions :)
+currently has support of two mirrors (Azure & Chimu), create an Issue for more suggestions :)
 
 
 Use it with Tampermonkey! <br />
