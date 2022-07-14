@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         OSU Download Booster
-// @namespace    https://www.rainng.com/
-// @version      2.5
-// @description  Osu谱面下载加速, 为中国玩家打造, 支持Rainng(Azure99维护)和Sayo(小夜维护)的镜像
-// @author       Azure99
-// @homepage     https://www.rainng.com/osu-download-booster
-// @supportURL   https://www.rainng.com/osu-download-booster
+// @namespace    Add me on Lεgεηd Rεcαlls#9421
+// @version      1.1
+// @description  Boost download speeds for osu beatmaps
+// @author       Legend Recalls
+// @homepage     https://github.com/Legend-Recalls/OsuDownloadBooster
+// @supportURL   https://github.com/Legend-Recalls/OsuDownloadBooster
 // @icon         https://osu.ppy.sh/favicon.ico
 // @include      http*://osu.ppy.sh/*
 // @grant        GM_xmlhttpRequest
@@ -74,7 +74,7 @@
                 '<a href="' + latestDownloadUrl + '" data-turbolinks="false"\n' +
                 '   class="btn-osu-mirror btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
                 '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-                '        class="btn-osu-hint btn-osu-big__text-bottom">获取地址中...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+                '        class="btn-osu-hint btn-osu-big__text-bottom">getting address...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
                 '        class="fas fa-download"></i></span></span></span></a>'
             );
             $('.beatmapset-header__buttons').append(
