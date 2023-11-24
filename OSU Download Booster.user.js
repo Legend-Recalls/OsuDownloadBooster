@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OSU Download Booster
 // @namespace    Add me on Lεgεηd Rεcαlls#9421
-// @version      1.1
+// @version      1.2
 // @description  Boost download speeds for osu beatmaps
 // @author       Legend Recalls
 // @homepage     https://github.com/Legend-Recalls/OsuDownloadBooster
@@ -21,6 +21,7 @@
 (function () {
     'use strict';
     const CHIMU_URL = 'https://api.chimu.moe/v1/download/';
+    const NEW_DIRECT_URL = 'https://api.osu.direct/osu/';
 
     let lastId = -1;
     let latestDownloadUrl = '';
@@ -41,7 +42,7 @@
             "function gtag(){dataLayer.push(arguments);}\n" +
             "gtag('js', new Date());\n" +
             "gtag('config', 'G-61W3GZ0ZNP');";
-        document.body.appendChild(script)
+        document.body.appendChild(script);
     }
 
     function setBeatmapTimer() {
@@ -68,32 +69,31 @@
     }
 
     function insertButton() {
-    let needInsert = $('.beatmapset-header__buttons').length == 1 && $('.beatmapset-header__buttons')[0].innerHTML.indexOf('/download"') && $('.btn-osu-mirror').length === 0;
-    if (needInsert) {
-        $('.beatmapset-header__buttons').append(
-            '<a href="' + latestDownloadUrl + '" data-turbolinks="false"\n' +
-            '   class="btn-osu-mirror btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
-            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-            '        class="btn-osu-hint btn-osu-big__text-bottom">getting address...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
-            '        class="fas fa-download"></i></span></span></span></a>'
-        );
-        $('.beatmapset-header__buttons').append(
-            '<a href="' + CHIMU_URL + getBeatmapId() + '" data-turbolinks="false"\n' +
-            '   class="btn-osu-mirror-sayo btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
-            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-            '        class="btn-osu-hint btn-osu-big__text-bottom">Chimu</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
-            '        class="fas fa-download"></i></span></span></span></a>'
-        );
-        $('.beatmapset-header__buttons').append(
-            '<a href="https://api.osu.direct/v2/b/' + getBeatmapId() + '" data-turbolinks="false"\n' +
-            '   class="btn-osu-mirror-direct btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
-            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-            '        class="btn-osu-hint btn-osu-big__text-bottom">NEW DIRECT</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
-            '        class="fas fa-download"></i></span></span></span></a>'
-        );
+        let needInsert = $('.beatmapset-header__buttons').length == 1 && $('.beatmapset-header__buttons')[0].innerHTML.indexOf('/download"') && $('.btn-osu-mirror').length === 0;
+        if (needInsert) {
+            $('.beatmapset-header__buttons').append(
+                '<a href="' + latestDownloadUrl + '" data-turbolinks="false"\n' +
+                '   class="btn-osu-mirror btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+                '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+                '        class="btn-osu-hint btn-osu-big__text-bottom">getting address...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+                '        class="fas fa-download"></i></span></span></span></a>'
+            );
+            $('.beatmapset-header__buttons').append(
+                '<a href="' + CHIMU_URL + getBeatmapId() + '" data-turbolinks="false"\n' +
+                '   class="btn-osu-mirror-sayo btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+                '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+                '        class="btn-osu-hint btn-osu-big__text-bottom">Chimu</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+                '        class="fas fa-download"></i></span></span></span></a>'
+            );
+            $('.beatmapset-header__buttons').append(
+                '<a href="' + NEW_DIRECT_URL + getBpIdFromLink() + '" data-turbolinks="false"\n' +
+                '   class="btn-osu-mirror-new-direct btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+                '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+                '        class="btn-osu-hint btn-osu-big__text-bottom">NEW DIRECT</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+                '        class="fas fa-download"></i></span></span></span></a>'
+            );
+        }
     }
-}
-
 
     function updateButton() {
         let btn = $('.btn-osu-mirror')[0];
@@ -117,6 +117,16 @@
         }
         return -1;
     }
+
+    function getBpIdFromLink() {
+    let url = window.location.href;
+    let match = url.match(/\/(\d+)#osu\/(\d+)$/);
+    if (match && match.length > 2) {
+        return match[2];
+    }
+    return '';
+}
+
 
     function getDownloadUrl(mapId) {
         if (running) {
