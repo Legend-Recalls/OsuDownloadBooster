@@ -68,24 +68,32 @@
     }
 
     function insertButton() {
-        let needInsert = $('.beatmapset-header__buttons').length == 1 && $('.beatmapset-header__buttons')[0].innerHTML.indexOf('/download"') && $('.btn-osu-mirror').length === 0;
-        if (needInsert) {
-            $('.beatmapset-header__buttons').append(
-                '<a href="' + latestDownloadUrl + '" data-turbolinks="false"\n' +
-                '   class="btn-osu-mirror btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
-                '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-                '        class="btn-osu-hint btn-osu-big__text-bottom">getting address...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
-                '        class="fas fa-download"></i></span></span></span></a>'
-            );
-            $('.beatmapset-header__buttons').append(
-                '<a href="' + CHIMU_URL + getBeatmapId() + '" data-turbolinks="false"\n' +
-                '   class="btn-osu-mirror-sayo btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
-                '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
-                '        class="btn-osu-hint btn-osu-big__text-bottom">Chimu</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
-                '        class="fas fa-download"></i></span></span></span></a>'
-            );
-        }
+    let needInsert = $('.beatmapset-header__buttons').length == 1 && $('.beatmapset-header__buttons')[0].innerHTML.indexOf('/download"') && $('.btn-osu-mirror').length === 0;
+    if (needInsert) {
+        $('.beatmapset-header__buttons').append(
+            '<a href="' + latestDownloadUrl + '" data-turbolinks="false"\n' +
+            '   class="btn-osu-mirror btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+            '        class="btn-osu-hint btn-osu-big__text-bottom">getting address...</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+            '        class="fas fa-download"></i></span></span></span></a>'
+        );
+        $('.beatmapset-header__buttons').append(
+            '<a href="' + CHIMU_URL + getBeatmapId() + '" data-turbolinks="false"\n' +
+            '   class="btn-osu-mirror-sayo btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+            '        class="btn-osu-hint btn-osu-big__text-bottom">Chimu</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+            '        class="fas fa-download"></i></span></span></span></a>'
+        );
+        $('.beatmapset-header__buttons').append(
+            '<a href="https://api.osu.direct/v2/b/' + getBeatmapId() + '" data-turbolinks="false"\n' +
+            '   class="btn-osu-mirror-direct btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
+            '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
+            '        class="btn-osu-hint btn-osu-big__text-bottom">NEW DIRECT</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
+            '        class="fas fa-download"></i></span></span></span></a>'
+        );
     }
+}
+
 
     function updateButton() {
         let btn = $('.btn-osu-mirror')[0];
