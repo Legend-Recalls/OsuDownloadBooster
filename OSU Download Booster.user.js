@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OSU Download Booster
-// @namespace    Add me on Lεgεηd Rεcαlls#9421
-// @version      1.2
+// @namespace    Add me on discord @legend_recalls
+// @version      1.3
 // @description  Boost download speeds for osu beatmaps
 // @author       Legend Recalls
 // @homepage     https://github.com/Legend-Recalls/OsuDownloadBooster
