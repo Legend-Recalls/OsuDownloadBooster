@@ -21,7 +21,7 @@
 (function () {
     'use strict';
     const CHIMU_URL = 'https://api.chimu.moe/v1/download/';
-    const NEW_DIRECT_URL = 'https://api.osu.direct/osu/';
+    const NEW_DIRECT_URL = 'https://api.osu.direct/d/';
 
     let lastId = -1;
     let latestDownloadUrl = '';
@@ -86,7 +86,7 @@
                 '        class="fas fa-download"></i></span></span></span></a>'
             );
             $('.beatmapset-header__buttons').append(
-                '<a href="' + NEW_DIRECT_URL + getBpIdFromLink() + '" data-turbolinks="false"\n' +
+                '<a href="' + NEW_DIRECT_URL + getBeatmapId() + '" data-turbolinks="false"\n' +
                 '   class="btn-osu-mirror-new-direct btn-osu-big btn-osu-big--beatmapset-header js-beatmapset-download-link"><span\n' +
                 '        class="btn-osu-big__content "><span class="btn-osu-big__left"><span class="btn-osu-big__text-top">Boost From</span><span\n' +
                 '        class="btn-osu-hint btn-osu-big__text-bottom">NEW DIRECT</span></span><span class="btn-osu-big__icon"><span class="fa-fw"><i\n' +
@@ -118,14 +118,7 @@
         return -1;
     }
 
-    function getBpIdFromLink() {
-    let url = window.location.href;
-    let match = url.match(/\/(\d+)#osu\/(\d+)$/);
-    if (match && match.length > 2) {
-        return match[2];
-    }
-    return '';
-}
+    
 
 
     function getDownloadUrl(mapId) {
